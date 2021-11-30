@@ -41,12 +41,15 @@ async function myFetch(fileName) {
 	console.log(`--${me.name}'s timeline--`);
 
 	const friendList = await myFetch(`friendsOf${me.id}.json`);
+	console.log(friendList)
 
 	const friendIds = new Set();
+	console.log(friendIds)
 	for(const id of friendList.friendIds) {
 		friendIds.add(myFetch(`user${id}.json`));
 	}
 	const friends = await Promise.all(friendIds);
+	console.log(friends)
 	
 	const msgIds = new Set();
 	for(const friend of friends) {
